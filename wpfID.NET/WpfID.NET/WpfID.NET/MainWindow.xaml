@@ -22,8 +22,8 @@
             <ColumnDefinition Width="149*"/>
         </Grid.ColumnDefinitions>
         <Rectangle x:Name="rec1" Fill="#FF141414" Stroke="#FF077CDA" Margin="0,0,4,1.2" Grid.RowSpan="8"/>
-        <Label Content="ID.NET" HorizontalAlignment="Left" Margin="23,11,0,0" VerticalAlignment="Top" Width="202" Height="74" FontSize="50" FontFamily="Arial Rounded MT Bold" Foreground="#FF0081EA"/>
-        <Label x:Name="lblSD" Content="Student Details" Margin="2,1.8,5,7.2" Foreground="#FFCFD9FF" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF0928B1" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Bahnschrift Light" Grid.Row="4" Grid.RowSpan="2" MinHeight="79.2">
+        <Label Content="ID.NET" HorizontalAlignment="Left" Margin="23,11,0,0" VerticalAlignment="Top" Width="202" Height="74" FontSize="50" FontFamily="Arial Rounded MT Bold" Foreground="#FF0081EA" TextOptions.TextRenderingMode="Auto"/>
+        <Label x:Name="lblSD" Content="Student Details" Margin="2,1.8,5,7.2" Foreground="#FFCFD9FF" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF0928B1" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Adobe Devanagari" Grid.Row="4" Grid.RowSpan="2" MinHeight="79.2" TextOptions.TextRenderingMode="Auto" FontStyle="Italic">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -33,7 +33,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="lblUD" Content="University Details" Margin="2,6.8,6,2.2" Foreground="#FFCFD9FF" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF0928B1" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Bahnschrift Light" Grid.Row="5" Grid.RowSpan="2" MinHeight="79.2" MinWidth="240">
+        <Label x:Name="lblUD" Content="University Details" Margin="2,6.8,6,2.2" Foreground="#FFCFD9FF" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF0928B1" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Adobe Devanagari" Grid.Row="5" Grid.RowSpan="2" MinHeight="79.2" MinWidth="240" TextOptions.TextRenderingMode="Auto" FontStyle="Italic">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -43,7 +43,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="lblQR" Content="QR Scan" Margin="2,2.4,5,4.2" Foreground="#FFCFD9FF" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="DarkGray" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Bahnschrift Light" Grid.Row="2" Grid.RowSpan="2">
+        <Label x:Name="lblQR" Content="QR Scan" Margin="2,2.4,5,4.2" Foreground="#FFCFD9FF" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="DarkGray" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Adobe Devanagari" Grid.Row="2" Grid.RowSpan="2" TextOptions.TextRenderingMode="Auto" FontStyle="Italic">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

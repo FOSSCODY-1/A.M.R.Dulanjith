@@ -44,9 +44,9 @@
         lblSD.Background = vc.ConvertFrom("#FF141414")
         lblUD.Background = vc.ConvertFrom("#FF141414")
 
-        lblQR.FontSize = 25
-        lblSD.FontSize = 20
-        lblUD.FontSize = 20
+        lblQR.FontSize = 30
+        lblSD.FontSize = 24
+        lblUD.FontSize = 24
 
         lblQRclk = 1
         lblSDclk = 0
@@ -58,9 +58,9 @@
         lblQR.Background = vc.ConvertFrom("#FF141414")
         lblUD.Background = vc.ConvertFrom("#FF141414")
 
-        lblQR.FontSize = 20
-        lblSD.FontSize = 25
-        lblUD.FontSize = 20
+        lblQR.FontSize = 24
+        lblSD.FontSize = 30
+        lblUD.FontSize = 24
 
         lblQRclk = 0
         lblSDclk = 1
@@ -72,12 +72,16 @@
         lblSD.Background = vc.ConvertFrom("#FF141414")
         lblQR.Background = vc.ConvertFrom("#FF141414")
 
-        lblQR.FontSize = 20
-        lblSD.FontSize = 20
-        lblUD.FontSize = 25
+        lblQR.FontSize = 24
+        lblSD.FontSize = 24
+        lblUD.FontSize = 30
 
         lblQRclk = 0
         lblSDclk = 0
         lblUDclk = 1
+    End Sub
+
+    Private Sub MainWindow_Initialized(sender As Object, e As EventArgs) Handles Me.Initialized
+
     End Sub
 End Class
