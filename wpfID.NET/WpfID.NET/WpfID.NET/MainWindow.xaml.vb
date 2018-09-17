@@ -51,6 +51,10 @@
         lblQRclk = 1
         lblSDclk = 0
         lblUDclk = 0
+
+        tb1.SelectedIndex = 1
+        tb1.SelectedItem = ti1
+        ti1.IsSelected = True
     End Sub
 
     Private Sub lblSD_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles lblSD.MouseLeftButtonDown
@@ -65,6 +69,11 @@
         lblQRclk = 0
         lblSDclk = 1
         lblUDclk = 0
+
+        tb1.SelectedIndex = 2
+        tb1.SelectedItem = ti2
+        ti2.IsSelected = True
+
     End Sub
 
     Private Sub lblUD_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles lblUD.MouseLeftButtonDown
@@ -79,6 +88,10 @@
         lblQRclk = 0
         lblSDclk = 0
         lblUDclk = 1
+
+        tb1.SelectedIndex = 3
+        tb1.SelectedItem = ti3
+        ti3.IsSelected = True
     End Sub
 
     Private Sub MainWindow_Initialized(sender As Object, e As EventArgs) Handles Me.Initialized

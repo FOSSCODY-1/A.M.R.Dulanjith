@@ -21,9 +21,9 @@
             <ColumnDefinition Width="36*"/>
             <ColumnDefinition Width="149*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle x:Name="rec1" Fill="#FF141414" Stroke="#FF077CDA" Margin="0,0,4,1.2" Grid.RowSpan="8"/>
-        <Label Content="ID.NET" HorizontalAlignment="Left" Margin="23,11,0,0" VerticalAlignment="Top" Width="202" Height="74" FontSize="50" FontFamily="Arial Rounded MT Bold" Foreground="#FF0081EA" TextOptions.TextRenderingMode="Auto"/>
-        <Label x:Name="lblSD" Content="Student Details" Margin="2,1.8,5,7.2" Foreground="#FFCFD9FF" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF0928B1" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Adobe Devanagari" Grid.Row="4" Grid.RowSpan="2" MinHeight="79.2" TextOptions.TextRenderingMode="Auto" FontStyle="Italic">
+        <Rectangle x:Name="rec1" Fill="#FF141414" Stroke="#FF077CDA" Margin="0,0,4,0.549" Grid.RowSpan="8"/>
+        <Label Content="ID.NET" Margin="33,11,33,0" VerticalAlignment="Top" Height="69" FontSize="60" FontFamily="Calibri" Foreground="#FF0081EA" TextOptions.TextRenderingMode="Auto" HorizontalContentAlignment="Center"/>
+        <Label x:Name="lblSD" Content="Student Details" Margin="2,1.272,5,7.728" Foreground="#FFCFD9FF" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF0928B1" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Adobe Devanagari" Grid.Row="4" Grid.RowSpan="2" MinHeight="79.2" TextOptions.TextRenderingMode="Auto" FontStyle="Italic">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -33,7 +33,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="lblUD" Content="University Details" Margin="2,6.8,6,2.2" Foreground="#FFCFD9FF" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF0928B1" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Adobe Devanagari" Grid.Row="5" Grid.RowSpan="2" MinHeight="79.2" MinWidth="240" TextOptions.TextRenderingMode="Auto" FontStyle="Italic">
+        <Label x:Name="lblUD" Content="University Details" Margin="2,7.118,6,0.749" Foreground="#FFCFD9FF" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF0928B1" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Adobe Devanagari" Grid.Row="5" Grid.RowSpan="2" MinHeight="79.2" MinWidth="240" TextOptions.TextRenderingMode="Auto" FontStyle="Italic">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -43,7 +43,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="lblQR" Content="QR Scan" Margin="2,2.4,5,4.2" Foreground="#FFCFD9FF" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="DarkGray" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Adobe Devanagari" Grid.Row="2" Grid.RowSpan="2" TextOptions.TextRenderingMode="Auto" FontStyle="Italic">
+        <Label x:Name="lblQR" Content="QR Scan" Margin="2,2.4,5,4.728" Foreground="#FFCFD9FF" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="DarkGray" Background="#FF141414" RenderTransformOrigin="0.5,0.5" FontFamily="Adobe Devanagari" Grid.Row="2" Grid.RowSpan="2" TextOptions.TextRenderingMode="Auto" FontStyle="Italic">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -53,6 +53,45 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
+        <TabControl x:Name="tb1" HorizontalAlignment="Left" Height="638" Grid.RowSpan="8" VerticalAlignment="Top" Width="1047" Background="#FF2D2D30" BorderBrush="#FF077CDA" Grid.ColumnSpan="2" Margin="248,0,0,0">
+            <TabItem x:Name="ti1" Header="TabItem">
+                <Grid x:Name="g3" Background="#FF2D2D30" Margin="-3,0,-0.2,0.4"/>
+            </TabItem>
+            <TabItem x:Name="ti2" Header="TabItem">
+                <Grid x:Name="g2" Background="#FF2D2D30">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="34*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="34*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="34*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="34*"/>
+                        <RowDefinition Height="343*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="47*"/>
+                        <ColumnDefinition Width="190*"/>
+                        <ColumnDefinition Width="803*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Registration Number :" Margin="0.8,0,0,0" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"/>
+                    <Label Content="Student Name :" Margin="0.6,0,0,0" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"/>
+                    <Label Content="Date of Birth :" Margin="0.8,0,0,0" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" Grid.Row="5" Grid.RowSpan="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"/>
+                    <Label Content="ID Number :" Margin="0.8,0,0,0" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" Grid.Row="7" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"/>
+                    <TextBox x:Name="TextBoxTemplateBase_1" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,0.4" Grid.Row="1" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD" BorderThickness="0 0 0 2"/>
+                    <TextBox x:Name="TextBoxTemplateBase_2" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,8.8" Grid.Row="3" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD" Grid.RowSpan="2"  BorderThickness="0 0 0 2"/>
+                    <TextBox x:Name="TextBoxTemplateBase_3" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,0.2" Grid.Row="5" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD"  BorderThickness="0 0 0 2"/>
+                    <TextBox x:Name="TextBoxTemplateBase_4" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,343.4" Grid.Row="7" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD" Grid.RowSpan="2"  BorderThickness="0 0 0 2"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="ti3" Header="TabItem">
+                <Grid x:Name="g4" Background="#FF2D2D30">
+                    <Label Content="Label" HorizontalAlignment="Left" Height="101" Margin="206,187,0,0" VerticalAlignment="Top" Width="277" Background="#FFBAA4A4"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Rectangle Height="3" Margin="23,85,23,0" Stroke="#FF141414" VerticalAlignment="Top" Fill="#FF5A5A5A"/>
 
     </Grid>
 </Window>
