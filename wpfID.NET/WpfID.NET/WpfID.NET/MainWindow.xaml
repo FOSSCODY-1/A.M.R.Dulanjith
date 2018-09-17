@@ -58,9 +58,9 @@
                 <Grid x:Name="g3" Background="#FF2D2D30" Margin="-3,0,-0.2,0.4"/>
             </TabItem>
             <TabItem x:Name="ti2" Header="TabItem">
-                <Grid x:Name="g2" Background="#FF2D2D30">
+                <Grid x:Name="g2" Background="#FF2D2D30" RenderTransformOrigin="1,1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="80*"/>
                         <RowDefinition Height="34*"/>
                         <RowDefinition Height="10*"/>
                         <RowDefinition Height="34*"/>
@@ -73,16 +73,30 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="47*"/>
                         <ColumnDefinition Width="190*"/>
-                        <ColumnDefinition Width="803*"/>
+                        <ColumnDefinition Width="742*"/>
+                        <ColumnDefinition Width="62*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Registration Number :" Margin="0.8,0,0,0" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"/>
-                    <Label Content="Student Name :" Margin="0.6,0,0,0" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"/>
-                    <Label Content="Date of Birth :" Margin="0.8,0,0,0" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" Grid.Row="5" Grid.RowSpan="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"/>
-                    <Label Content="ID Number :" Margin="0.8,0,0,0" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" Grid.Row="7" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"/>
-                    <TextBox x:Name="TextBoxTemplateBase_1" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,0.4" Grid.Row="1" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD" BorderThickness="0 0 0 2"/>
-                    <TextBox x:Name="TextBoxTemplateBase_2" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,8.8" Grid.Row="3" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD" Grid.RowSpan="2"  BorderThickness="0 0 0 2"/>
-                    <TextBox x:Name="TextBoxTemplateBase_3" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,0.2" Grid.Row="5" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD"  BorderThickness="0 0 0 2"/>
-                    <TextBox x:Name="TextBoxTemplateBase_4" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,343.4" Grid.Row="7" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD" Grid.RowSpan="2"  BorderThickness="0 0 0 2"/>
+                    <Label Content="Registration Number :" Margin="0.8,83,742,0.4" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                    <Label Content="Student Name :" Margin="0.8,0.2,742,0.4" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch" Grid.ColumnSpan="2"/>
+                    <Label Content="Date of Birth :" Margin="0.8,10,742,0" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" Grid.Row="4" Grid.RowSpan="3" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch" Grid.ColumnSpan="2"/>
+                    <Label Content="ID Number :" Margin="0.8,0,742,0.2" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="1" Grid.Row="7" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="txtreg" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0.8,0,0.4" Grid.Row="1" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD" BorderThickness="0 0 0 2"/>
+                    <TextBox x:Name="txtnm" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,1.2,0,0" Grid.Row="3" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD"  BorderThickness="0 0 0 2"/>
+                    <TextBox x:Name="txtdob" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0.6,0,0.6" Grid.Row="5" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD"  BorderThickness="0 0 0 2"/>
+                    <TextBox x:Name="txtid" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,1,0,0.2" Grid.Row="7" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD"  BorderThickness="0 0 0 2"/>
+                    <Image Grid.Column="1" HorizontalAlignment="Left" Height="341" Margin="58.8,7.8,0,0" Grid.Row="8" VerticalAlignment="Top" Width="265" Panel.ZIndex="6" OpacityMask="#FF916F6F" Grid.ColumnSpan="2"/>
+                    <Button Content="" Grid.Column="2" HorizontalAlignment="Left" Height="67" Margin="167.4,57.8,0,0" Grid.Row="8" VerticalAlignment="Top" Width="76" Foreground="#FFCED9FF" BorderBrush="#FF2D2D30" OpacityMask="#FFD9D5D5">
+                        <Button.BindingGroup>
+                            <BindingGroup/>
+                        </Button.BindingGroup>
+                        <Button.Background>
+                            <ImageBrush ImageSource="PNG/icons8-compact-camera-filled-50.png" Stretch="None"/>
+                        </Button.Background>
+                    </Button>
+                    <Label Content="Faculty Name :" Margin="399.2,83,202,0.4" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch" Grid.RowSpan="2"/>
+                    <Label Content="Course Name :" Margin="399.2,0.2,202,0.4" Foreground="#FFCFD9FF" FontFamily="Global User Interface" FontSize="18" Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"/>
+                    <TextBox x:Name="txtfac" Grid.Column="2" HorizontalAlignment="Left" Margin="545.2,0.8,0,0.4" Grid.Row="1" TextWrapping="Wrap" Width="192" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD" BorderThickness="0 0 0 2"/>
+                    <TextBox x:Name="txtcor" Grid.Column="2" HorizontalAlignment="Left" Margin="545.2,1.2,0,0" Grid.Row="3" TextWrapping="Wrap" Width="191" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD"  BorderThickness="0 0 0 2"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="ti3" Header="TabItem">
