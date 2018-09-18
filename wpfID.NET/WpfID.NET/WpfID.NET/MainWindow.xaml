@@ -6,6 +6,124 @@
         xmlns:local="clr-namespace:WpfID.NET"
         mc:Ignorable="d"
         Title="MainWindow" Height="668.45" Width="1304.684" WindowStartupLocation="CenterScreen" Background="#FF2D2D30" WindowStyle="ThreeDBorderWindow">
+    <Window.Resources>
+        <Storyboard x:Key="lableQR">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="lblQR">
+                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#FF736F6F"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="lblmouseup">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="lblQR">
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF2D2D30"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="lblsdmup">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="lblSD">
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF2D2D30"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="lbludup">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="lblUD">
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF2D2D30"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="brnimg">
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF969696"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="lblqrdwn">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="lblQR">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF2D2D30"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.4" Value="#FF141414"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="lblsddwn">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="lblSD">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF2D2D30"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.4" Value="#FF141414"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="lbluddwn">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="lblUD">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF2D2D30"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.4" Value="#FF141414"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" FocusVisualStyle="{DynamicResource FocusVisual}">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="lblQR">
+            <BeginStoryboard x:Name="lblmouseup_BeginStoryboard" Storyboard="{StaticResource lblmouseup}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="lblQR">
+            <BeginStoryboard x:Name="lblqrdwn_BeginStoryboard" Storyboard="{StaticResource lblqrdwn}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="lblSD">
+            <BeginStoryboard x:Name="lblsdmup_BeginStoryboard1" Storyboard="{StaticResource lblsdmup}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="lblSD">
+            <BeginStoryboard x:Name="lblsddwn_BeginStoryboard" Storyboard="{StaticResource lblsddwn}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="lblUD">
+            <BeginStoryboard x:Name="lbludup_BeginStoryboard1" Storyboard="{StaticResource lbludup}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="lblUD">
+            <BeginStoryboard x:Name="lbluddwn_BeginStoryboard1" Storyboard="{StaticResource lbluddwn}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid x:Name="g1" Margin="0,0,3.4,0.2">
         <Grid.RowDefinitions>
             <RowDefinition Height="155*"/>
@@ -84,8 +202,8 @@
                     <TextBox x:Name="txtnm" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,1.2,0,0" Grid.Row="3" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD"  BorderThickness="0 0 0 2"/>
                     <TextBox x:Name="txtdob" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0.6,0,0.6" Grid.Row="5" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD"  BorderThickness="0 0 0 2"/>
                     <TextBox x:Name="txtid" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,1,0,0.2" Grid.Row="7" TextWrapping="Wrap" Width="334" FontSize="18" FontFamily="Global User Interface" Height="34" VerticalAlignment="Center" VerticalContentAlignment="Center" CaretBrush="#FF7C1C1C" SelectionBrush="#FF717374" Background="#FF2D2D30" Cursor="IBeam" Foreground="#FFCBC9DD"  BorderThickness="0 0 0 2"/>
-                    <Image Grid.Column="1" HorizontalAlignment="Left" Height="341" Margin="58.8,7.8,0,0" Grid.Row="8" VerticalAlignment="Top" Width="265" Panel.ZIndex="6" OpacityMask="#FF916F6F" Grid.ColumnSpan="2"/>
-                    <Button Content="" Grid.Column="2" HorizontalAlignment="Left" Height="67" Margin="167.4,57.8,0,0" Grid.Row="8" VerticalAlignment="Top" Width="76" Foreground="#FFCED9FF" BorderBrush="#FF2D2D30" OpacityMask="#FFD9D5D5">
+                    <Image x:Name="img1" Grid.Column="1" HorizontalAlignment="Left" Height="9cm" Margin="58.8,7.8,0,0" Grid.Row="8" VerticalAlignment="Top" Width="7cm" Panel.ZIndex="6" OpacityMask="#FF916F6F" Grid.ColumnSpan="2" MaxHeight="340.157480314961" MaxWidth="264.566929133858" MinWidth="264.566929133858" MinHeight="340.157480314961"/>
+                    <Button x:Name="brnimg" Content="" Grid.Column="2" HorizontalAlignment="Left" Height="67" Margin="167.4,57.8,0,0" Grid.Row="8" VerticalAlignment="Top" Width="76" Foreground="#FFCED9FF" BorderBrush="#FF2D2D30" OpacityMask="#FFD9D5D5" Style="{DynamicResource ButtonStyle1}" FocusVisualStyle="{DynamicResource FocusVisual}">
                         <Button.BindingGroup>
                             <BindingGroup/>
                         </Button.BindingGroup>
