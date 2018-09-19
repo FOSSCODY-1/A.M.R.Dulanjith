@@ -2,15 +2,15 @@
 Imports System.Security.Cryptography
 Imports System.Text
 Imports MySql.Data.MySqlClient
+Imports System.Data
 
 Class MainWindow
-
-    Dim lblQRclk As Integer = 0
-    Dim lblSDclk As Integer = 0
-    Dim lblUDclk As Integer = 0
     Dim vc = New BrushConverter()
     Dim hash As String
     Dim qrgen As New MessagingToolkit.QRCode.Codec.QRCodeEncoder
+    Dim dsFac, dsCur As New DataSet()
+    Dim qryFac, qryCur As String
+
 
     Private Sub Rectangle_MouseDown(sender As Object, e As MouseButtonEventArgs)
         mnWindow.DragMove()
@@ -283,4 +283,58 @@ Class MainWindow
     Private Sub lblfacdel_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles lblfacdel.MouseLeftButtonDown
         sqlDelFac()
     End Sub
+
+    Private Function sqlDelCor()
+        If txtcorID.Text = "" Then
+            MessageBox.Show("Please enter Course ID", "Error", vbOKOnly, MessageBoxImage.Error)
+            Exit Function
+        End If
+
+        If MessageBox.Show("Do you want to delete this course?", "Warning", vbOK, MessageBoxImage.Exclamation) = vbOK Then
+            Dim cmd As New MySqlCommand("DELETE FROM foss01.courdet WHERE curID=@curID", connection.con)
+            cmd.Parameters.Add("@curID", MySqlDbType.VarChar).Value = txtcorID.Text
+
+            Try
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, "Error while deleting course", vbOKOnly, MessageBoxImage.Error)
+                Return 1
+            End Try
+            MessageBox.Show("Course deleted!", "Successful", vbOKOnly, MessageBoxImage.Information)
+        End If
+    End Function
+
+    Private Sub lblcordel_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles lblcordel.MouseLeftButtonDown
+        sqlDelCor()
+    End Sub
+
+    Private Sub btndgv_Click(sender As Object, e As RoutedEventArgs) Handles btndgv.Click
+        dsFacGen()
+    End Sub
+
+    Private Sub reccordel_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles reccordel.MouseLeftButtonDown
+        sqlDelCor()
+    End Sub
+
+    Private Function dsFacGen()
+        qryFac = "SELECT * FROM foss01.facdet"
+        Me.Cursor = Cursors.Wait
+        Try
+            Dim da As New MySqlDataAdapter(qryFac, connection.con)
+            da.Fill(dsFac)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Errot while genarating dataset", vbOKOnly, MessageBoxImage.Error)
+            Me.Cursor = Cursors.Arrow
+            Return 0
+        End Try
+
+        Try
+            txtreg.
+        Catch ex As Exception
+
+        End Try
+        Me.Cursor = Cursors.Arrow
+        Return 1
+    End Function
+
 End Class

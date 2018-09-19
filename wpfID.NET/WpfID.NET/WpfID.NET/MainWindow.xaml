@@ -216,7 +216,10 @@
         </Label>
         <TabControl x:Name="tb1" HorizontalAlignment="Left" Height="638" Grid.RowSpan="8" VerticalAlignment="Top" Width="1047" Background="#FF2D2D30" BorderBrush="#FF077CDA" Grid.ColumnSpan="2" Margin="248,0,0,0">
             <TabItem x:Name="ti1" Header="TabItem">
-                <Grid x:Name="g3" Background="#FF2D2D30" Margin="-3,0,-0.2,0.4"/>
+                <Grid x:Name="g3" Background="#FF2D2D30" Margin="-3,0,-0.2,0.4">
+                    <DataGrid x:Name="dgv1" HorizontalAlignment="Left" Height="517" Margin="31,30,0,0" VerticalAlignment="Top" Width="945"/>
+                    <Button x:Name="btndgv" Content="Button" HorizontalAlignment="Left" Height="19" Margin="130,567,0,0" VerticalAlignment="Top" Width="165"/>
+                </Grid>
             </TabItem>
             <TabItem x:Name="ti2" Header="TabItem">
                 <Grid x:Name="g2" Background="#FF2D2D30" RenderTransformOrigin="1,1">

@@ -1,6 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class connection
-    Public Shared Function con()
+    Public Shared Function con() As MySqlConnection
         Dim sqlcon As New MySqlConnection
         sqlcon.ConnectionString = "server=den1.mysql6.gear.host;user id=foss01;password=Rr75!E4oF?uA;persistsecurityinfo=True;database=foss01;sslmode=None"
 
