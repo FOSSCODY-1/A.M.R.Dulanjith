@@ -10,6 +10,8 @@ Class MainWindow
     Dim qrgen As New MessagingToolkit.QRCode.Codec.QRCodeEncoder
     Dim dsFac, dsCur As New DataSet()
     Dim qryFac, qryCur As String
+    Dim facFound, curFound As Integer
+    Dim selectedFileName As String
 
 
     Private Sub Rectangle_MouseDown(sender As Object, e As MouseButtonEventArgs)
@@ -116,11 +118,11 @@ Class MainWindow
     Private Function imgSel()
         Dim dlg As New OpenFileDialog()
         dlg.InitialDirectory = "c:\"
-        dlg.Filter = "Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|All Files (*.*)|*.*"
+        dlg.Filter = "Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png"
         dlg.RestoreDirectory = True
 
         If dlg.ShowDialog() = True Then
-            Dim selectedFileName As String = dlg.FileName
+            selectedFileName = dlg.FileName
             Dim bitmap As New BitmapImage()
             bitmap.BeginInit()
             bitmap.UriSource = New Uri(selectedFileName)
@@ -310,10 +312,43 @@ Class MainWindow
 
     Private Sub btndgv_Click(sender As Object, e As RoutedEventArgs) Handles btndgv.Click
         dsFacGen()
+        dgv1.ItemsSource = dsFac.Tables(0).DefaultView
     End Sub
 
     Private Sub reccordel_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles reccordel.MouseLeftButtonDown
         sqlDelCor()
+    End Sub
+
+    Private Sub txtfac_LostFocus(sender As Object, e As RoutedEventArgs) Handles txtfac.LostFocus
+        If Not txtfac.Text = "" Then
+            Dim i As Integer
+            facFound = 0
+            For i = 0 To dsFac.Tables(0).Rows.Count - 1
+                If txtfac.Text = dsFac.Tables(0).Rows(i).Item(0) Then
+                    facFound = 1
+                    Exit Sub
+                End If
+            Next
+
+            MessageBox.Show("Cannot find this Faculty ID in database." + Environment.NewLine + "Please check again", "Error", vbOKOnly, MessageBoxImage.Error)
+        End If
+
+    End Sub
+
+    Private Sub txtcor_LostFocus(sender As Object, e As RoutedEventArgs) Handles txtcor.LostFocus
+        If Not txtcor.Text = "" Then
+            Dim i As Integer
+            curFound = 0
+            For i = 0 To dsCur.Tables(0).Rows.Count - 1
+                If txtcor.Text = dsCur.Tables(0).Rows(i).Item(0) Then
+                    curFound = 1
+                    Exit Sub
+                End If
+            Next
+
+            MessageBox.Show("Cannot find this Course ID in database." + Environment.NewLine + "Please check again", "Error", vbOKOnly, MessageBoxImage.Error)
+        End If
+
     End Sub
 
     Private Function dsFacGen()
@@ -323,18 +358,77 @@ Class MainWindow
             Dim da As New MySqlDataAdapter(qryFac, connection.con)
             da.Fill(dsFac)
         Catch ex As Exception
-            MessageBox.Show(ex.Message, "Errot while genarating dataset", vbOKOnly, MessageBoxImage.Error)
+            MessageBox.Show(ex.Message, "Errot while genarating faculty dataset", vbOKOnly, MessageBoxImage.Error)
             Me.Cursor = Cursors.Arrow
             Return 0
         End Try
 
-        Try
-            txtreg.
-        Catch ex As Exception
-
-        End Try
         Me.Cursor = Cursors.Arrow
         Return 1
     End Function
 
+    Private Sub imgCal_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles imgCal.MouseLeftButtonDown
+        If cal1.Visibility = Visibility.Visible Then
+            cal1.Visibility = Visibility.Collapsed
+        Else
+            cal1.Visibility = Visibility.Visible
+        End If
+    End Sub
+
+    Private Sub cal1_SelectedDatesChanged(sender As Object, e As SelectionChangedEventArgs) Handles cal1.SelectedDatesChanged
+        txtdob.Text = cal1.SelectedDate.Value.ToString("yyyy - MMMM - dd")
+        cal1.Visibility = Visibility.Collapsed
+    End Sub
+
+    Private Function dsCurGen()
+        qryCur = "SELECT * FROM foss01.courdet"
+        Me.Cursor = Cursors.Wait
+        Try
+            Dim da As New MySqlDataAdapter(qryCur, connection.con)
+            da.Fill(dsCur)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Errot while genarating course dataset", vbOKOnly, MessageBoxImage.Error)
+            Me.Cursor = Cursors.Arrow
+            Return 0
+        End Try
+
+        Me.Cursor = Cursors.Arrow
+        Return 1
+    End Function
+
+    Private Sub MainWindow_Initialized(sender As Object, e As EventArgs) Handles Me.Initialized
+        facFound = 0
+        curFound = 0
+        dsFacGen()
+        dsCurGen()
+    End Sub
+
+    Private Function addSTD()
+        If facFound = 0 Then
+            MessageBox.Show("Please enter valid Faculty ID", "Error", vbOKOnly, MessageBoxImage.Error)
+            Return 0
+        End If
+
+        If curFound = 0 Then
+            MessageBox.Show("Please enter valid Course ID", "Error", vbOKOnly, MessageBoxImage.Error)
+            Return 0
+        End If
+
+        If txtreg.Text = "" Or txtnm.Text = "" Or txtdob.Text = "" Or txtid.Text = "" Then
+            MessageBox.Show("Please complete details", "Error", vbOKOnly, MessageBoxImage.Error)
+            Return 0
+        End If
+
+        If selectedFileName = "" Then
+            MessageBox.Show("Please add image", "Error", vbOKOnly, MessageBoxImage.Error)
+            Return 0
+        End If
+
+        Dim sqlAddStd As New MySqlCommand("INSERT INTO foss01.stddet VALUES(@regno,@stdnm,@dob,@nic,@facid,@curid,LOAD_FILE(@img))", connection.con)
+        ' cmdu.Parameters.Add("@corid", MySqlDbType.VarChar).Value = txtcorID.Text
+        sqlAddStd.Parameters.Add("@regno", MySqlDbType.Int16).Value = txtreg.Text
+        sqlAddStd.Parameters.Add("@stdnm", MySqlDbType.VarChar).Value = txtnm.Text
+        'sqlAddStd.Parameters.Add("@dob", MySqlDbType.Date).Value = txtd
+        Return 1
+    End Function
 End Class
