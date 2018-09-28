@@ -3,15 +3,20 @@ Imports System.Security.Cryptography
 Imports System.Text
 Imports MySql.Data.MySqlClient
 Imports System.Data
+Imports System.Windows.Media.Imaging
 
 Class MainWindow
     Dim vc = New BrushConverter()
     Dim hash As String
     Dim qrgen As New MessagingToolkit.QRCode.Codec.QRCodeEncoder
-    Dim dsFac, dsCur As New DataSet()
+    Dim dsFac, dsCur, dsStd As New DataSet()
     Dim qryFac, qryCur As String
     Dim facFound, curFound As Integer
     Dim selectedFileName As String
+    Dim bitmap As New BitmapImage()
+    Dim bi As New BitmapImage
+    Dim dbimg() As Byte
+    Dim ms As System.IO.MemoryStream
 
 
     Private Sub Rectangle_MouseDown(sender As Object, e As MouseButtonEventArgs)
@@ -93,7 +98,7 @@ Class MainWindow
 
         Try
             Dim ms As New IO.MemoryStream
-            Dim bi As New BitmapImage
+
             qrgen.Encode(hash).Save(ms, System.Drawing.Imaging.ImageFormat.Png)
             bi.BeginInit()
             bi.StreamSource = ms
@@ -123,10 +128,13 @@ Class MainWindow
 
         If dlg.ShowDialog() = True Then
             selectedFileName = dlg.FileName
-            Dim bitmap As New BitmapImage()
-            bitmap.BeginInit()
-            bitmap.UriSource = New Uri(selectedFileName)
-            bitmap.EndInit()
+
+            Dim bitmap1 As New BitmapImage()
+            bitmap1.BeginInit()
+            bitmap1.UriSource = New Uri(selectedFileName)
+            bitmap1.EndInit()
+
+            bitmap = bitmap1
             imgstd.Source = bitmap
         End If
         Return 0
@@ -380,6 +388,10 @@ Class MainWindow
         cal1.Visibility = Visibility.Collapsed
     End Sub
 
+    Private Sub lblStd_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles lblStd.MouseLeftButtonDown
+        addSTD()
+    End Sub
+
     Private Function dsCurGen()
         qryCur = "SELECT * FROM foss01.courdet"
         Me.Cursor = Cursors.Wait
@@ -396,14 +408,45 @@ Class MainWindow
         Return 1
     End Function
 
+    Private Sub txtreg_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtreg.TextChanged
+        If txtreg.Text = "" Then
+            Exit Sub
+        End If
+        Dim i As Integer
+
+        For i = 0 To dsStd.Tables(0).Rows.Count - 1
+            If txtreg.Text = dsStd.Tables(0).Rows(i).Item(0) Then
+                txtnm.Text = dsStd.Tables(0).Rows(i).Item(1)
+                txtdob.Text = dsStd.Tables(0).Rows(i).Item(2)
+                txtid.Text = dsStd.Tables(0).Rows(i).Item(3)
+                txtfac.Text = dsStd.Tables(0).Rows(i).Item(4)
+                txtcor.Text = dsStd.Tables(0).Rows(i).Item(5)
+
+                'dbimg = dsStd.Tables(0).Rows(i).Item(6)
+                'ms = New System.IO.MemoryStream(dbimg)
+                'Dim im As Image = Drawing.Image.FromStream(ms)
+                'bitmap.BeginInit()
+                'bitmap.StreamSource = ms
+                'bitmap.EndInit()
+                'bitmap.Freeze()
+
+                'imgstd.Source = bitmap2
+                Exit Sub
+            End If
+        Next
+    End Sub
+
     Private Sub MainWindow_Initialized(sender As Object, e As EventArgs) Handles Me.Initialized
         facFound = 0
         curFound = 0
         dsFacGen()
         dsCurGen()
+        dsStdGen()
+        txtdob.IsReadOnly = True
     End Sub
 
     Private Function addSTD()
+        Dim msg() As String
         If facFound = 0 Then
             MessageBox.Show("Please enter valid Faculty ID", "Error", vbOKOnly, MessageBoxImage.Error)
             Return 0
@@ -424,11 +467,65 @@ Class MainWindow
             Return 0
         End If
 
-        Dim sqlAddStd As New MySqlCommand("INSERT INTO foss01.stddet VALUES(@regno,@stdnm,@dob,@nic,@facid,@curid,LOAD_FILE(@img))", connection.con)
-        ' cmdu.Parameters.Add("@corid", MySqlDbType.VarChar).Value = txtcorID.Text
+        Dim sqlAddStd As New MySqlCommand("INSERT INTO foss01.stddet VALUES(@regno,@stdnm,@dob,@nic,@facid,@curid,@img)", connection.con)
+
         sqlAddStd.Parameters.Add("@regno", MySqlDbType.Int16).Value = txtreg.Text
         sqlAddStd.Parameters.Add("@stdnm", MySqlDbType.VarChar).Value = txtnm.Text
-        'sqlAddStd.Parameters.Add("@dob", MySqlDbType.Date).Value = txtd
+        sqlAddStd.Parameters.Add("@dob", MySqlDbType.Date).Value = cal1.SelectedDate.Value
+        sqlAddStd.Parameters.Add("@nic", MySqlDbType.VarChar).Value = txtid.Text
+        sqlAddStd.Parameters.Add("@facid", MySqlDbType.Int16).Value = txtfac.Text
+        sqlAddStd.Parameters.Add("@curid", MySqlDbType.Int16).Value = txtcor.Text
+        sqlAddStd.Parameters.Add("@img", MySqlDbType.Blob).Value = bitmap
+
+        Try
+            sqlAddStd.ExecuteNonQuery()
+        Catch ex As Exception
+            msg = ex.Message.ToString.Split(" ")
+
+            If msg(0) = "Duplicate" Then
+
+                Dim cmdu As New MySqlCommand("UPDATE foss01.stddet SET stdName=@stdnm,dob=@dob,nic=@nic,facID=facid,courID=@curid,img=@img WHERE regNo=@regno", connection.con())
+
+                cmdu.Parameters.Add("@regno", MySqlDbType.Int16).Value = txtreg.Text
+                cmdu.Parameters.Add("@stdnm", MySqlDbType.VarChar).Value = txtnm.Text
+                cmdu.Parameters.Add("@dob", MySqlDbType.Date).Value = cal1.SelectedDate.Value
+                cmdu.Parameters.Add("@nic", MySqlDbType.VarChar).Value = txtid.Text
+                cmdu.Parameters.Add("@facid", MySqlDbType.Int16).Value = txtfac.Text
+                cmdu.Parameters.Add("@curid", MySqlDbType.Int16).Value = txtcor.Text
+                cmdu.Parameters.Add("@img", MySqlDbType.Blob).Value = bitmap
+
+                Try
+                    cmdu.ExecuteNonQuery()
+                Catch ex2 As Exception
+                    MessageBox.Show(ex2.Message, "Error while updating duplicate entry", vbOKOnly, MessageBoxImage.Error)
+                    Return 0
+                End Try
+                dsStdGen()
+                MessageBox.Show("Student Updated!", "Successful", vbOKOnly, MessageBoxImage.Information)
+            Else
+                MessageBox.Show(ex.Message, "Error while updating database", vbOKOnly, MessageBoxImage.Error)
+                Return 1
+            End If
+            Return 0
+        End Try
+        dsStdGen()
+        MessageBox.Show("Student Added!", "Successful", vbOKOnly, MessageBoxImage.Information)
+        Return 1
+    End Function
+
+    Private Function dsStdGen()
+        qryFac = "SELECT * FROM foss01.stddet"
+        Me.Cursor = Cursors.Wait
+        Try
+            Dim da As New MySqlDataAdapter(qryFac, connection.con)
+            da.Fill(dsStd)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Errot while genarating Student dataset", vbOKOnly, MessageBoxImage.Error)
+            Me.Cursor = Cursors.Arrow
+            Return 0
+        End Try
+
+        Me.Cursor = Cursors.Arrow
         Return 1
     End Function
 End Class

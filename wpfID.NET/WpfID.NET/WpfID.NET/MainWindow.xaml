@@ -565,7 +565,7 @@
                                 </LinearGradientBrush>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Label x:Name="lblStd" Content="Add Student" HorizontalAlignment="Left" Height="43" Margin="19,0,0,0" VerticalAlignment="Top" Width="152" FontFamily="Segoe UIGlobal User Interface" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFCFD9FE"/>
+                        <Label x:Name="lblStd" Content="Add/Update Student" HorizontalAlignment="Left" Height="43" VerticalAlignment="Top" Width="184" FontFamily="Segoe UIGlobal User Interface" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFCFD9FE"/>
                     </Grid>
                     <Rectangle x:Name="rechshback" Grid.Column="3" Fill="#FF2D2D30" HorizontalAlignment="Left" Height="311" Margin="228.2,6.2,0,0" RadiusY="6.7" Grid.Row="10" RadiusX="6.7" Stroke="#FF2D2D30" VerticalAlignment="Top" Width="311"/>
                     <Grid Grid.Column="3" HorizontalAlignment="Left" Height="43" Margin="574.2,115.2,0,0" Grid.Row="10" VerticalAlignment="Top" Width="194" Grid.ColumnSpan="2">
