@@ -8,4 +8,4 @@
 <p>ID.NET can install on windows OS and need .NET framewok 4.5. ID.NET database is in online severs so required internet connection to work(ID.NET will take some time when updating database). I did it for for ID.NET android application. So app can connect directly to database without much efford.</p> 
 
 <h4>Installation</h4>
-<p>Simplay open wpfID.NET/Setup/Setup.vbproj and in solution explorer in visual studio, right click on setup project and click buid. It will create setup.msi file.</p> 
+<p>Open wpfID.NET/Setup/Setup.vbproj and in solution explorer in visual studio, right click on setup project and click buid. It will create setup.msi file.</p> 
